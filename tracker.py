@@ -65,7 +65,7 @@ def main():
         if choice == "1":
             cat = input("Category: ")
             amt = float(input("Amount: "))
-            date = input("Date(YYYY-MM-DD: ")
+            date = input("Date(YYYY-MM-DD): ")
             add_expense(cat, amt,date)
         elif choice == "2":
             view_expense()
