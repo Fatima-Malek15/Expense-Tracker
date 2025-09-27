@@ -28,3 +28,12 @@ def add_expense(category, amount, expense_date):
     conn.close()
     print("Expense added")
 
+#view expenses
+def view_expense:
+    conn = sqlite3.connect("expense.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM expenses")
+    rows = cursor.fetchall()
+    for row in rows:
+        print(row)
+    conn.close()
