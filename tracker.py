@@ -20,10 +20,10 @@ if __name__ == "__main__":
 def add_expense(category, amount, expense_date):
     conn = sqlite3.connect("expense.db")
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO expenses"
-                   "(category, amount, expense_date "
-                   "VALUES(?, ?, ?)",
-                   (category,amount, expense_date))
+    cursor.execute("""INSERT INTO expenses
+                    (category, amount, expense_date)
+                   VALUES(?,?,?)""",
+                   (category, amount, expense_date))
     conn.commit()
     conn.close()
     print("Expense added")
@@ -72,7 +72,7 @@ def main():
         elif choice == "3":
             summary_by_category()
         elif choice == "4":
-            break
+            exit(0)
         else:
             print("Invalid choice!")
 
