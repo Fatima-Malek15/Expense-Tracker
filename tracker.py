@@ -29,7 +29,7 @@ def add_expense(category, amount, expense_date):
     print("Expense added")
 
 #view expenses
-def view_expense:
+def view_expense():
     conn = sqlite3.connect("expense.db")
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM expenses")
@@ -46,6 +46,36 @@ def summary_by_category():
                     FROM expenses
                     GROUP BY category""")
     rows = cursor.fetchall()
+    for row in rows:
+        print(f"{row[0]}: {row[1]}")
     conn.close()
 
+#CLI menu
+def main():
+    init_db()
+    while True:
+        print("\nExpense Tracker Menu")
+        print("1. Add Expense")
+        print("2. View Expenses")
+        print("3. Summary by Category")
+        print("4. Exit")
+
+        choice = input("Choose an option ")
+
+        if choice == "1":
+            cat = input("Category: ")
+            amt = float(input("Amount: "))
+            date = input("Date(YYYY-MM-DD: ")
+            add_expense(cat, amt,date)
+        elif choice == "2":
+            view_expense()
+        elif choice == "3":
+            summary_by_category()
+        elif choice == "4":
+            break
+        else:
+            print("Invalid choice!")
+
+if __name__ == "__main__":
+    main()
 
