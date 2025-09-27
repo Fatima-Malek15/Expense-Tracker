@@ -37,3 +37,15 @@ def view_expense:
     for row in rows:
         print(row)
     conn.close()
+
+#reports(basic analysis)
+def summary_by_category():
+    conn = sqlite3.connect("expense.db")
+    cursor = conn.cursor()
+    cursor.execute("""SELECT category, SUM(amount)
+                    FROM expenses
+                    GROUP BY category""")
+    rows = cursor.fetchall()
+    conn.close()
+
+
